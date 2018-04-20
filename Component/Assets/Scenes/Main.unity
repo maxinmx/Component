@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mAnimation: {fileID: 0}
+  receiveInfo: "<Test id='1'>\u64AD\u653E</Test>"
 --- !u!1 &153588380
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mAnimation: {fileID: 1591838914}
+  receiveInfo: "<Test id='Cube1' operation='\u52A8\u753B' value='play'></Test>"
 --- !u!111 &1591838914
 Animation:
   m_ObjectHideFlags: 0
@@ -558,8 +560,12 @@ Animation:
   m_GameObject: {fileID: 1591838907}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 38bb887a377ea1246bfc9c4f2e8d74e7, type: 2}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: b470d3711dab21744a3dece108436268, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 38bb887a377ea1246bfc9c4f2e8d74e7, type: 2}
+  - {fileID: 7400000, guid: bc6aea4ab107d464d8dd392e095166d0, type: 2}
+  - {fileID: 7400000, guid: b470d3711dab21744a3dece108436268, type: 2}
+  - {fileID: 7400000, guid: d0dde3420c74070478b96ed6e6cc4d45, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
