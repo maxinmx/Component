@@ -4,57 +4,32 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 
 public class Animate : MonoBehaviour {
-    public Animation mAnimation;
-    public string receiveInfo = "<Test id='Cube1' operation='动画' value='play'></Test>";
 
-    private string execId;//与输入信息匹配的正则表达式确定id值
-    private string execOp;//确定操作
-    private string execValue;//确定操作的值
-    private string Id;//匹配后的id值
-    private string Op;//匹配后的操作
-    private string Value;//匹配后的值
+    public Animation mAnimation;
     private AnimationClip aniClip;
 
+    /*
+     * 对于每个加进来的动画来讲都需要给这个动画项目加标签Animate
+     */
     // Use this for initialization  
     void Start()
     {
-        GameObject a = GameObject.Find("Cube");
+        GameObject a = GameObject.FindWithTag("Animate");
         mAnimation = a.GetComponent<Animation>();
-        Analyze();
-    }
-
-
-    // Update is called once per frame  */
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Result(Id, Value);
-        }
-    }
-
-    //得出id号和操作的名称及操作值
-    public void Analyze()
-    {
-        execId = @"<.*\sid='(.*)'\soperation.*>.*<.*>";
-        execOp = @"<.*\soperation='(.*)'\svalue.*>.*<.*>";
-        execValue = @"<.*\svalue='(.*)'>.*<.*>";
-        Id = Regex.Match(receiveInfo, execId).Groups[1].Value;
-        Op = Regex.Match(receiveInfo, execOp).Groups[1].Value;
-        Value = Regex.Match(receiveInfo, execValue).Groups[1].Value;
+    //    Analyze();
     }
 
     //判断操作名称以及将会执行的操作
-    public void Result(string id,string value)
+    public void ChangeAnimate(string operation, string value)
     {
         if (value == "play")
         {
-            setAnimationClipName(id);
+            setAnimationClipName(operation);
             mAnimation.Play();
         }
         else
         {
-            setAnimationClipName(id);
+            setAnimationClipName(operation);
             mAnimation.Stop();
         }
     }
@@ -83,6 +58,27 @@ public class Animate : MonoBehaviour {
             Debug.Log(mAnimation.GetClip(name));
             mAnimation.clip = aniClip;
         }
-        
+
+    }
+    void Update()
+    {
+        /* if (Input.GetMouseButtonDown(0))
+         {
+             changeAnimate(Id, Value);
+         }*/
     }
 }
+
+//得出id号和操作的名称及操作值
+/*  public void Analyze()
+  {
+      execId = @"<.*\sid='(.*)'\soperation.*>.*<.*>";
+      execOp = @"<.*\soperation='(.*)'\svalue.*>.*<.*>";
+      execValue = @"<.*\svalue='(.*)'>.*<.*>";
+      Id = Regex.Match(receiveInfo, execId).Groups[1].Value;
+      Op = Regex.Match(receiveInfo, execOp).Groups[1].Value;
+      Value = Regex.Match(receiveInfo, execValue).Groups[1].Value;
+  }*/
+// Update is called once per frame  */
+
+

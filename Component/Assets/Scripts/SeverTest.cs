@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
-//using System.Threading.Tasks;
 using System.Net;
 using System.Threading;
 using Net;
 using System.IO;
-using System.Xml;
 using UnityEngine;
 
 public class SeverTest : MonoBehaviour {
@@ -30,7 +28,7 @@ public class SeverTest : MonoBehaviour {
         //设置最长的连接请求队列长度  
         serverSocket.Listen(10);
         Console.WriteLine("启动监听{0}成功", serverSocket.LocalEndPoint.ToString());
-        Debug.Log("启动监听成功"+serverSocket.LocalEndPoint.ToString()+ "成功");
+        Debug.Log("启动监听"+serverSocket.LocalEndPoint.ToString()+ "成功");
         //在新线程中监听客户端的连接  
         Thread thread = new Thread(ClientConnectListen);
         thread.Start();
@@ -89,13 +87,16 @@ public class SeverTest : MonoBehaviour {
             {
                 int receiveNumber = mClientSocket.Receive(result);
                 Console.WriteLine("接收客户端{0}消息， 长度为{1}", mClientSocket.RemoteEndPoint.ToString(), receiveNumber);
+                Debug.Log("接收客户端" + mClientSocket.RemoteEndPoint.ToString()+ "消息， 长度为"+ receiveNumber);
                 ByteBuffer buff = new ByteBuffer(result);
                 //数据长度  
                 int len = buff.ReadShort();
                 //数据内容  
                 string data = buff.ReadString();
+                
 
                 Console.WriteLine("数据内容：{0}", data);
+                Debug.Log("数据内容："+ data);
             }
             catch (Exception ex)
             {
@@ -106,4 +107,11 @@ public class SeverTest : MonoBehaviour {
             }
         }
     }
+    //处理函数
+    private void DealWith(string receiveInfo)
+    {
+        GetComponent<Xml>().ExecAnalyze(receiveInfo);
+        GetComponent<Manager>().Change();
+    }
+
 }

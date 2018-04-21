@@ -4,35 +4,67 @@ using UnityEngine;
 using System.Text.RegularExpressions;
 
 public class ColorManager : MonoBehaviour {
-
+    /*
     public string receiveInfo = "<Test id='Cube1' operation='颜色' value='(0,0,0)'></Test>";
-
+    */
     private GameObject obj;
     private Renderer render;
     private Texture texture;
-
-    private string execId;//与输入信息匹配的正则表达式确定id值
-    private string execOp;//确定操作
-    private string execValue;//确定操作的值
-    private string execBrackets;//匹配括号
-    private string Id;//匹配后的id值
-    private string Op;//匹配后的操作
-    private string Value;//匹配后的值
-    private string[] rgb;
+    private int ColorR;
+    private int ColorG;
+    private int ColorB;
 
     // Use this for initialization
     void Start()
     {
-        obj = GameObject.Find("Sphere");
+        obj = GameObject.FindWithTag("NotAnimate");
         //获取该游戏对象的渲染器  
         render = obj.GetComponent<Renderer>();
         render.material.mainTexture = texture;
-        Analyze();
+    //    Analyze();
     }
     void Update()
     {
-        ChangeColor(rgb);
+ //       ChangeColor(rgb);
     }
+    /*
+     将上面的RGB付给下面的值
+         */
+    //返回RGB数值
+    public int getColorR(string[] RGB)
+    {
+        return int.Parse(RGB.GetValue(0).ToString());
+    }
+    public int getColorG(string[] RGB)
+    {
+        return int.Parse(RGB.GetValue(1).ToString());
+    }
+    public int getColorB(string[] RGB)
+    {
+        return int.Parse(RGB.GetValue(2).ToString());
+    }
+
+    //给球体赋值
+    public void ChangeColor(int R,int G,int B)
+    {
+        render.material.color = new Color(R,G,B);
+    }
+
+    //设置R,G,B的值，并调用函数改变其颜色
+    public void setColor(string[] rgb)
+    {
+        ColorR = getColorR(rgb);
+        ColorG = getColorG(rgb);
+        ColorB = getColorB(rgb);
+        ChangeColor(ColorR, ColorG, ColorB);
+    }
+
+    /*
+    public void ChangeColor(string[] RGB)
+    {
+        render.material.color = new Color(int.Parse(RGB.GetValue(0).ToString()), int.Parse(RGB.GetValue(1).ToString()), int.Parse(RGB.GetValue(2).ToString()));
+    }*/
+    /*
     public void Analyze()
     {
         execId = @"<.*\sid='(.*)'\soperation.*>.*<.*>";
@@ -44,11 +76,7 @@ public class ColorManager : MonoBehaviour {
         Value = Regex.Match(receiveInfo, execValue).Groups[1].Value;
         Value = Regex.Match(Value, execBrackets).Groups[1].Value;
         rgb = Regex.Split(Value, ",");
-    }
-    public void ChangeColor(string[] RGB)
-    {
-        render.material.color = new Color(int.Parse(RGB.GetValue(0).ToString()), int.Parse(RGB.GetValue(1).ToString()), int.Parse(RGB.GetValue(2).ToString()));
+    }*/
 
-    }
 
 }

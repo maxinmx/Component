@@ -395,9 +395,11 @@ GameObject:
   - component: {fileID: 1644536852}
   - component: {fileID: 1644536851}
   - component: {fileID: 1644536855}
+  - component: {fileID: 1644536856}
+  - component: {fileID: 1644536857}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: NotAnimate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -479,4 +481,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26adcb0154f38f9468d11344e8091fc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1644536856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644536850}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37004b1b9104bfa4c95b6a964903f5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   receiveInfo: "<Test id='Cube1' operation='\u989C\u8272' value='(0,0,0)'></Test>"
+--- !u!114 &1644536857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1644536850}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ec6a676c3b8044abf8d6967718a574, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  receiveInfo: "<Test id='Cube1' operation='\u5927\u5C0F' value='(2,3,4)'></Test>"
+  receiveInfo1: "<Test id='Cube1' operation='\u4F4D\u7F6E' value='(2,3,4)'></Test>"
